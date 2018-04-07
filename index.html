@@ -2,6 +2,21 @@
 <html>
   <head></head>
   <body>
-    <scritp src="./robin.js"></script>
+  	<div id="app">
+  		<h1>{   title }</h1>
+  		<p>{content}</p>
+  	</div>
+    <script src="./robin.js"></script>
+    <script type="text/javascript">
+    	var r=new robin({
+    		dom:"app",
+    		data:{
+    			name:"robin",
+    			age:33,
+    			addr:'china'
+    		}
+    	});
+    	console.log(r)
+    </script>
   </body>
 </html>

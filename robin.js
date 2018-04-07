@@ -1,3 +1,6 @@
+
+
+
 (function(){
 
   console.log("doSomething after")
@@ -29,7 +32,7 @@
   	this.$root=replacedRoot;
 	
   	//render the dom with  repalced dom 
-	document.getElementsByTagName('html')[0].innerHTML=this.$root;
+	  document.getElementsByTagName('html')[0].innerHTML=this.$root;
 	
 
   }
@@ -104,14 +107,26 @@
 
   	extend:function(obj){
 
-  		if(isFunction(obj)){
-
-  		}
-
-  		if(isFunction(obj)){
-
-  		}
+  		//if the parameter obj is a function ,then define a property named
+      // with the function for this 
+      if (isFunction(obj)){           
+        Object.defineProperty(this,obj.name,{
+          writable:true,
+          value:obj,
+          enumerable:true,
+          configurable:true
+        })
+      }
+      
+      //if the parameter obj is a object,then  add all properties to this
+      if (isPlainObjcet(obj)){
+        var allKeys=Object.keys(obj);
+        for (i in allKeys){
+          this[allKeys[i]]=obj[allKeys[i]]
+        }
+      }
   	}
+
   }
 
   window.robin=robin

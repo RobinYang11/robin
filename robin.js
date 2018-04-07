@@ -1,5 +1,10 @@
 
-
+/*
+* Author :robin
+* start at 2018.4.7
+* TM ROBIN
+* robin.js
+*/
 
 (function(){
 
@@ -7,33 +12,11 @@
 
 })(function(){
 
-  // your code here....
 
-  function robin(){
+  //main function for user to initializate
+  function robin(param){
 
-  	var param=arguments[0];
-
-  	//if no dom specified ,will defaultly create instance wtih html element,
-  	//else create the instance with specify dom element
-  	if(!param.dom){
-  		this.$root=document.getElementsByTagName('html')[0].innerHTML;
-  	}else{
-  		this.$root=document.getElementById(param.dom).innerHTML;
-  	}
-
-  	//if with data ,add the data to the instance
-  	if(param.data){
-  		this.$data=param.data
-  	}
-
-
-  	//replace the binding data in dom with given data
-  	var replacedRoot=replaceBindingData(this.$root,this.$data);
-  	this.$root=replacedRoot;
-	
-  	//render the dom with  repalced dom 
-	  document.getElementsByTagName('html')[0].innerHTML=this.$root;
-	
+    return new robin.fn.init(param)
 
   }
 
@@ -88,23 +71,35 @@
 
   }
 
-  // //get key from matched array
-  // function getKeyfromMatchedArray(arr){
-  // 	 var res=[];
-  // 	 console.log(arr)
-  // 	 arr.forEach(function(i){
-  	 	
-  // 	 	var result=patt.exec(i)
-  // 	 	res.push(result[0])
-  // 	 })
-  // 	 return res;
-  // }
+  //
+  robin.fn=robin.prototype={
 
 
+    //initializate the robin instance
+    init:function(param){
+
+        if(!param.dom){
+          this.$root=document.getElementsByTagName('html')[0].innerHTML;
+        }else{
+          this.$root=document.getElementById(param.dom).innerHTML;
+        }
+
+        //if with data ,add the data to the instance
+        if(param.data){
+          this.$data=param.data
+        }
 
 
-  robin.prototype={
+        //replace the binding data in dom with given data
+        var replacedRoot=replaceBindingData(this.$root,this.$data);
+        this.$root=replacedRoot;
+      
+        //render the dom with  repalced dom 
+        document.getElementsByTagName('html')[0].innerHTML=this.$root;
 
+    },
+
+    //extend the plugin
   	extend:function(obj){
 
   		//if the parameter obj is a function ,then define a property named

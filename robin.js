@@ -13,19 +13,24 @@
   	//if no dom specified ,will defaultly create instance wtih html element,
   	//else create the instance with specify dom element
   	if(!param.dom){
-  		this.$root=document.getElementsByTagName('html')[0].outerHTML;
+  		this.$root=document.getElementsByTagName('html')[0].innerHTML;
   	}else{
-  		this.$root=document.getElementById(param.dom).outerHTML;
+  		this.$root=document.getElementById(param.dom).innerHTML;
   	}
-
-  	//
-  	replaceBindingData(this.$root,this.$data);
-
 
   	//if with data ,add the data to the instance
   	if(param.data){
   		this.$data=param.data
   	}
+
+
+  	//replace the binding data in dom with given data
+  	var replacedRoot=replaceBindingData(this.$root,this.$data);
+  	this.$root=replacedRoot;
+	
+  	//render the dom with  repalced dom 
+	document.getElementsByTagName('html')[0].innerHTML=this.$root;
+	
 
   }
 
@@ -57,13 +62,15 @@
 
   //replace the binding data in dom
   function replaceBindingData(dom,data){
-
+  	console.log(data)
   	var bindingData=getBindingData(dom);
-  	var keyArr=getKeyfromMatchedArray(bindingData);
+  	// var keyArr=getKeyfromMatchedArray(bindingData);
+  	var patt=/\w+/;
   	bindingData.forEach(function(i){
-  		
+  		dom=dom.replace(i,data[patt.exec(i)])
+  		console.log(dom)
   	})
-
+  	return dom
   }
 
   //get binding data from dom 
@@ -78,18 +85,17 @@
 
   }
 
-  //get key from matched array
-  function getKeyfromMatchedArray(arr){
-  	 var res=[];
-  	 console.log(arr)
-  	 arr.forEach(function(i){
-  	 	var patt = new RegExp("\w","g");
-  	 	var result=patt.exec(i);
-  	 	console.log(result)
-  	 })
-
-  	 return res;
-  }
+  // //get key from matched array
+  // function getKeyfromMatchedArray(arr){
+  // 	 var res=[];
+  // 	 console.log(arr)
+  // 	 arr.forEach(function(i){
+  	 	
+  // 	 	var result=patt.exec(i)
+  // 	 	res.push(result[0])
+  // 	 })
+  // 	 return res;
+  // }
 
 
 

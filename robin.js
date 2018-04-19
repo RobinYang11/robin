@@ -1,5 +1,5 @@
 /*!
- * Robin.js v2.5.16
+ * Robin.js v1.0.0
  * (c) 2018.4-2018.4 Robin Yang
  * Released under 
  the MIT License.

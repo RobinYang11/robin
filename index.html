@@ -3,20 +3,51 @@
   <head></head>
   <body>
   	<div id="app">
-  		<h1>{   title }</h1>
-  		<p>{content}</p>
+  		<h1>{{age+33   +money+test() }}</h1>
+  		<p>{{content}}</p>
+      <span>{{ !isOld }}</span>
   	</div>
     <script src="./robin.js"></script>
     <script type="text/javascript">
+      // var vm=new Vue({
+      //   el:"#app",
+      //   data:{
+      //     title:"this is a test!",
+      //     age:33,
+      //     name:"robin",
+      //     content:"this  is  content!",
+      //     money:44,
+      //     isOld:true
+      //   },
+      //   methods:{
+      //     test:function(){
+      //       return this.age+this.money
+      //     }
+      //   }
+      // })
     	var r=new robin({
     		dom:"app",
     		data:{
     			title:"robin",
     			age:33,
-    			content:'china'
-    		}
+    			content:'china',
+          isOld:true,
+          money:44
+    		},
+        methods:{
+          test:function(){
+            return this.age+this.money
+          }
+        }
     	});
-    
+
+     
+
+
+      // console.log(r);
+      // r.extend({"name":"robin"})
+      console.log(r);
+
     </script>
   </body>
 </html>
